@@ -12,30 +12,35 @@ class DiferenciasCentradas:
         return (funcion.subs('x', x - 2*h) - 8*funcion.subs('x', x - h) + 8*funcion.subs('x', x + h) - funcion.subs('x', x + 2*h)) / (12 * h)
         ##con subs sustituimos a la funcion por las operaciones establecidas por 'x' y 'h'
 def main():
-
-    funcion_expresion = input("Ingresa la función a evaluar: ")
-    funcion = sp.sympify(funcion_expresion)
-    
-    h = float(input("Ingresa el valor de h: "))
-    x = float(input("Ingresa el valor de x: "))
-    
-    diferencias = DiferenciasCentradas()
-    
-    print("Elige una opción:")
-    print("1. Diferencia centrada en 2 puntos")
-    print("2. Diferencia centrada en 4 puntos")
-    opcion = int(input())
-    
-    
-    if opcion == 1:
-        resultado = diferencias.diferencia_centrada_2_puntos(funcion, h, x)
-    elif opcion == 2:
-        resultado = diferencias.diferencia_centrada_4_puntos(funcion, h, x)
-    else:
-        print("Opción no válida")
-        return
-    
-    print("Resultado:", resultado)
+    try:
+        funcion_expresion = input("Ingresa la función a evaluar: ")
+        funcion = sp.sympify(funcion_expresion)
+        
+        h = float(input("Ingresa el valor de h: "))
+        x = float(input("Ingresa el valor de x: "))
+        
+        diferencias = DiferenciasCentradas()
+        
+        opcion = 0
+        
+        while opcion not in [1, 2]:
+            print("Elige una opción:")
+            print("1. Diferencia centrada en 2 puntos")
+            print("2. Diferencia centrada en 4 puntos")
+            
+            try:
+                opcion = int(input())
+            except ValueError:
+                print("Ingrese un número válido")
+        
+        if opcion == 1:
+            resultado = diferencias.diferencia_centrada_2_puntos(funcion, h, x)
+        elif opcion == 2:
+            resultado = diferencias.diferencia_centrada_4_puntos(funcion, h, x)
+        
+        print("Resultado:", resultado)
+    except ValueError:
+        print("Ingrese valores numéricos válidos")
 
 if __name__ == "__main__":
     main()
