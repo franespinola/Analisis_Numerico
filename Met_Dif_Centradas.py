@@ -16,19 +16,20 @@ class DiferenciasCentradas:
         return funcion.diff('x').subs('x', x)
 def main():
     try:
-        funcion_expresion = input("Ingresa la función a evaluar: ")
+        funcion_expresion = input("\033[1;31;47mIngresa la función a evaluar:\033[m")
         funcion = sp.sympify(funcion_expresion)
         
         h = float(input("Ingresa el valor de h: "))
         x = float(input("Ingresa el valor de x: "))
         derivada_exacta = funcion.diff('x').subs('x', x)
+        print("\n")
         
         diferencias = DiferenciasCentradas()
         
         opcion = 0
         
         while opcion not in [1, 2, 3]:
-            print("Elige una opción:")
+            print("\033[1;31;47mElige una opción:\033[m")
             print("1. Diferencia centrada en 2 puntos")
             print("2. Diferencia centrada en 4 puntos")
             print("3. Metodo directo")
@@ -43,7 +44,9 @@ def main():
         elif opcion == 2:
             resultado = diferencias.diferencia_centrada_4_puntos(funcion, h, x)
         elif opcion == 3:
-            resultado = diferencias.derivada_metodo_directo(funcion, x)    
+            resultado = diferencias.derivada_metodo_directo(funcion, x)
+        
+        print("\n")    
         
         print("Resultado:", resultado)
         
