@@ -3,6 +3,7 @@
 #3° Luego utilizar la formula para calcular la derivada en 4 puntos f'(x)=(f(x-2h)-8*f(x-h)+8*f(x+h)-f(x+2h))/12*h
 ## para funciones exponenciales utlizar exp ejemplo: exp (x)/(1+exp (2*x))-->e^x/1+e^2x
 import sympy as sp
+from colorama import Fore, Back, Style, init
 
 class DiferenciasCentradas:
     def diferencia_centrada_2_puntos(self, funcion, h, x):
@@ -48,14 +49,16 @@ def main():
         
         print("\n")    
         
-        print("Resultado:", resultado)
+        print(Fore.YELLOW +"Resultado:", Fore.GREEN + str(resultado) + Style.RESET_ALL)
         
         ##calculo de error porcentual
         error_porcentual = abs((derivada_exacta- resultado) / derivada_exacta) * 100
-        print("Error porcentual:", error_porcentual)
+        print(Fore.YELLOW+"Error porcentual:", Fore.GREEN + str(error_porcentual) + Style.RESET_ALL)
     except ValueError:
         print("Ingrese valores numéricos válidos")
-
+    
+    print("\n")
+      
 if __name__ == "__main__":
     main()
 
